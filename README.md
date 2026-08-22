@@ -79,6 +79,27 @@ RTK READINESS : base_pos=Y  observations=Y  ephemeris=N  -> READY for rover RTK
  ...
 ```
 
+## Testing
+
+Unit tests cover the pure (non-network) decoding logic in `ntrip_client.py`.
+They use only the standard library, so no fixtures or hardware are needed:
+
+```bash
+python3 -m unittest -v test_ntrip_client.py
+```
+
+`test_ntrip_client.py` contains 13 tests in four groups:
+
+| Group | What it checks |
+|-------|----------------|
+| `CRC24Q` | CRC-24Q validation against a **real captured RTCM3 1077 frame** (header+payload CRC equals the trailing 3 bytes), detection of a flipped byte, and the empty-input case |
+| `Ecef` | `ecef_to_llh` ECEF→lat/lon/height conversion at the equator/prime-meridian and a typical mid-latitude surface point |
+| `Nmea` | NMEA checksum validation, GGA parsing (RTK-fixed quality, sat count, correction age), S/W sign handling, GST accuracy, and rejection of non-GGA sentences |
+| `MsgNames` | RTCM message-type → constellation mapping and human-readable names |
+
+These run automatically in CI (see the badge above) on Python 3.9–3.13 for
+every push and pull request, alongside a `py_compile` check of the client.
+
 ## Notes
 
 - `ephemeris=N` is normal and does **not** block RTK — a rover gets ephemeris
