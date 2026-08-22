@@ -1,6 +1,8 @@
 # GPS-client
 
+[![CI](https://github.com/Corteil/GPS-client/actions/workflows/ci.yml/badge.svg)](https://github.com/Corteil/GPS-client/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 
 A minimal, dependency-free **NTRIP rover client** for inspecting an RTKBase
 caster. It connects to a mountpoint, reads the live RTCM3 correction stream,
