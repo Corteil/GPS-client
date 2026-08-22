@@ -1,5 +1,7 @@
 # GPS-client
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A minimal, dependency-free **NTRIP rover client** for inspecting an RTKBase
 caster. It connects to a mountpoint, reads the live RTCM3 correction stream,
 validates each message with CRC-24Q, and prints a rolling dashboard of exactly
